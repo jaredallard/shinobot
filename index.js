@@ -121,7 +121,7 @@ function init(ck, cs, at, ats) {
     access_token_secret: ats
   });
 
-  /*T.get('account/verify_credentials', function(err, data, res) {
+  T.get('account/verify_credentials', function(err, data, res) {
     if(err) {
       throw err;
     }
@@ -135,11 +135,7 @@ function init(ck, cs, at, ats) {
 
     events.init(T, data.screen_name);
     main(T, data.screen_name);
-  });*/ // don't waste our api calls in development.
-
-  // call the event init
-  events.init(T, 'asadashinobot') // DEVELOPER ONLY
-  main(T, 'asadashinobot'); // DEVELOPER ONLY
+  });
 }
 
 // main application.
