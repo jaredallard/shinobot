@@ -158,7 +158,7 @@ function main(T, user) {
     tweet.reply = function(text) {
         T.post('statuses/update', {
           status: '@'+tweet.user.screen_name+' '+text,
-          in_reply_to_status_id: tweet.id
+          in_reply_to_status_id: tweet.id_str
         }, function(err, data, res) {
           if(err) {
             console.log("I failed to send a reply with the error: ", err);
