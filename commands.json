@@ -1,0 +1,9 @@
+[{
+  "command": "version",
+  "function": "getVersion",
+  "response": "v: {{version}} c: {{commit}}"
+},
+{
+  "command": "hello-world",
+  "response": "Hello, world!"
+}]
