@@ -1,7 +1,7 @@
 {
   "events": [{
     "interval": 60,
-    "fucntion": "postImage"
+    "function": "postImage"
   }],
   "commands": [{
     "command": "version",
