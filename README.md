@@ -46,7 +46,7 @@ Add a new JSON object into the array in command.json. i.e
 Now create a function in the `command_functions.js` file we just opened like so:
 
 ```js
-index.myCommandFunction = function(tweet, array) {
+cf.myCommandFunction = function(tweet, array) {
   var text = array.template({
     variable: "totally unique"
   })
