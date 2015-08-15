@@ -6,7 +6,7 @@
   },
   {
     "type": "one-shot",
-    "target": "stream",
+    "target": "never",
     "function": "postImage"
   },
   {
@@ -28,7 +28,7 @@
   },
   {
     "pattern": {
-      "string": "get(images|img)",
+      "string": "get(images?|imgs?)",
       "flag": "gi"
     },
     "function": "getImage"

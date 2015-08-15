@@ -1,6 +1,8 @@
 # shinobot
 
-A super modular Twitter bot.
+[![Code Climate](https://codeclimate.com/github/jaredallard/shinobot/badges/gpa.svg)](https://codeclimate.com/github/jaredallard/shinobot)
+
+A bot that posts images of Asada Shino!
 
 ## Installation
 
@@ -8,54 +10,13 @@ A super modular Twitter bot.
 git clone https://github.com/jaredallard/shinobot
 cd shinobot
 npm install
+[node/io].js index.js
 ```
 
-## Making Rules
+## Engine
 
-Open `command.json` and `lib/command_functions.js`.
-
-A rule looks like this:
-
-```json
-{
-  "command": "",
-  "function": "",
-  "response": ""
-}
-```
-
-##### `command` - command to trigger execution
-
-##### `function` - function in `lib/command_functions.js` to execute on trigger
-
-##### `response` - Handlebars template to format with the function.
-
-
-### Example Creation:
-
-Add a new JSON object into the array in command.json. i.e
-
-```json
-{
-  "command": "my-command",
-  "function": "myCommandFunction",
-  "response": "my {{variable}} response"
-}
-```
-
-Now create a function in the `command_functions.js` file we just opened like so:
-
-```js
-cf.myCommandFunction = function(tweet, array) {
-  var text = array.template({
-    variable: "totally unique"
-  })
-  tweet.reply(text);
-  return true;
-}
-```
-
-You can do anything with the [handlebars](https://handlebarsjs.com) template!
+This twitter bot utilizes [shinojs](https://github.com/jaredallard/shinojs), a
+super modular Twitter bot framework that this bot inspired! Check it out.
 
 ## License
 
