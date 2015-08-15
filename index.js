@@ -18,7 +18,7 @@ var prompt  = require('prompt'),
 function getCommit() {
   var commit = 'NOT-GIT';
   if(fs.existsSync('.git/refs/heads/master')) {
-    commit = fs.readFileSync('.git/refs/heads/master', 'utf8').substr(1, 7);
+    commit = fs.readFileSync('.git/refs/heads/master', 'utf8').substr(0, 6);
   }
 
   return commit;
