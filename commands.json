@@ -1,15 +1,32 @@
 {
   "events": [{
-    "interval": 60,
+    "interval": 900000,
+    "type": "timer",
     "function": "postImage"
+  },
+  {
+    "type": "one-shot",
+    "target": "stream",
+    "function": "postImage"
+  },
+  {
+    "type": "one-shot",
+    "target": "init",
+    "function": "updateLocation"
   }],
   "commands": [{
-    "command": "version",
+    "pattern": {
+      "string": "version",
+      "flag": "gi"
+    },
     "function": "getVersion",
     "response": "v: {{version}} c: {{commit}}"
   },
   {
-    "command": "getImage",
+    "pattern": {
+      "string": "getimage",
+      "flag": "gi"
+    },
     "function": "getImage",
     "response": "Failed to obtain an image."
   },

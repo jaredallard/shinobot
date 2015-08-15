@@ -64,12 +64,10 @@ if(!fs.existsSync('./config.json')) {
     }
 
     // test our credentials
-    process.stdout.write('testing credentials... ');
+    process.stdout.write('testing credentials ... ');
 
     // start the spinner
-    spin.start(50, {
-      hideCursor: true
-    });
+    spin.start(50);
 
     // check if we're okay with twit.
     var T = new twit({
@@ -90,6 +88,7 @@ if(!fs.existsSync('./config.json')) {
 
       // stop the spinner.
       spin.stop();
+      console.log("done.");
 
       var config = result; // should be already setup.
 
@@ -130,7 +129,7 @@ function init(ck, cs, at, ats) {
     }
 
     console.log('pre-init auth check succedded.')
-    console.log("screen_name:", data.name);
+    console.log("screen_name:", data.screen_name);
 
     events.init(T, data.screen_name, function() {
       main(T, data.screen_name);
@@ -138,14 +137,23 @@ function init(ck, cs, at, ats) {
   });
 }
 
-// main application.
+/**
+ * Main function
+ *
+ * @param {object} T - authenticated twit object
+ * @param {string} user - screen_name
+ **/
 function main(T, user) {
   // stream
   var stream = T.stream('user');
 
-  stream.on('connect', events.connect);
+  stream.on('connect', function(req) {
+    events.connect(req, T)
+  });
 
-  stream.on('connected', events.connected);
+  stream.on('connected', function(res) {
+    events.connected(res, T);
+  });
 
   stream.on('tweet', function(tweet) {
 
