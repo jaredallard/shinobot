@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/jaredallard/shinobot#readme",
   "dependencies": {
+    "google-images": "^0.1.0",
     "handlebars": "^3.0.3",
+    "node-base64-image": "0.0.1",
     "prompt": "^0.2.14",
     "request": "^2.60.0",
     "simple-spinner": "0.0.5",

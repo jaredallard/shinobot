@@ -1,9 +1,20 @@
-[{
-  "command": "version",
-  "function": "getVersion",
-  "response": "v: {{version}} c: {{commit}}"
-},
 {
-  "command": "hello-world",
-  "response": "Hello, world!"
-}]
+  "events": [{
+    "interval": 60,
+    "fucntion": "postImage"
+  }],
+  "commands": [{
+    "command": "version",
+    "function": "getVersion",
+    "response": "v: {{version}} c: {{commit}}"
+  },
+  {
+    "command": "getImage",
+    "function": "getImage",
+    "response": "Failed to obtain an image."
+  },
+  {
+    "command": "hello-world",
+    "response": "Hello, world!"
+  }]
+}

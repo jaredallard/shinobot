@@ -10,7 +10,6 @@
 
 var prompt  = require('prompt'),
     fs      = require('fs'),
-    request = require('request'),
     spin    = require('simple-spinner'),
     events  = require('./lib/events.js'),
     twit    = require('twit');
@@ -131,10 +130,11 @@ function init(ck, cs, at, ats) {
     }
 
     console.log('pre-init auth check succedded.')
-    console.log("Hi! I'm", data.name+'.');
+    console.log("screen_name:", data.name);
 
-    events.init(T, data.screen_name);
-    main(T, data.screen_name);
+    events.init(T, data.screen_name, function() {
+      main(T, data.screen_name);
+    });
   });
 }
 
@@ -171,9 +171,9 @@ function main(T, user) {
 
     // check if it's @ us, and if it is that it's not a RT.
     if(tweet.text.match('@'+user) && (typeof(tweet.retweeted_status)==='undefined')) {
-      events.mention(tweet); // call mention event.
+      events.mention(tweet, T); // call mention event.
     } else {
-      events.tweet(tweet); // call tweet event.
+      events.tweet(tweet, T); // call tweet event.
     }
   });
 
