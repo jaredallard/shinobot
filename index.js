@@ -26,7 +26,7 @@ function getCommit() {
 }
 
 // version information
-global.version = "0.1.0";
+global.version =  require('./package.json').version;
 global.commit = getCommit();
 
 
