@@ -13,11 +13,6 @@
     "type": "one-shot",
     "target": "init",
     "function": "updateLocation"
-  },
-  {
-    "type": "filter",
-    "on": "tweet",
-    "function": "filterTweets"
   }],
   "commands": [{
     "stream": "mentions",
@@ -42,7 +37,7 @@
     "function": "getImage"
   }],
   "streams": [
-    "mentions",
-    "home"
+    "home",
+    "mentions"
   ]
 }
