@@ -6,31 +6,43 @@
   },
   {
     "type": "one-shot",
-    "target": "stream",
+    "target": "never",
     "function": "postImage"
   },
   {
     "type": "one-shot",
     "target": "init",
     "function": "updateLocation"
+  },
+  {
+    "type": "filter",
+    "on": "tweet",
+    "function": "filterTweets"
   }],
   "commands": [{
+    "stream": "mentions",
     "pattern": [{
-      "string": "version",
+      "string": "[a-z]+",
       "flag": "gi"
     },
     {
-      "string": "--version",
+      "string": "version",
       "flag": "gi"
     }],
     "function": "getVersion",
-    "response": "v: {{version}} c: {{commit}}"
+    "response": "v: {{version}} c: {{commit}}",
+    "matchAll": true
   },
   {
+    "stream": "mentions",
     "pattern": {
       "string": "get(images?|imgs?)",
       "flag": "gi"
     },
     "function": "getImage"
-  }]
+  }],
+  "streams": [
+    "mentions",
+    "home"
+  ]
 }
