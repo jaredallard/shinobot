@@ -16,17 +16,12 @@
   }],
   "commands": [{
     "stream": "mentions",
-    "pattern": [{
-      "string": "[a-z]+",
-      "flag": "gi"
-    },
-    {
+    "pattern": {
       "string": "version",
       "flag": "gi"
-    }],
+    },
     "function": "getVersion",
-    "response": "v: {{version}} c: {{commit}}",
-    "matchAll": true
+    "response": "v: {{version}} c: {{commit}}"
   },
   {
     "stream": "mentions",
