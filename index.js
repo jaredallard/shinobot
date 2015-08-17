@@ -217,6 +217,9 @@ function tweetAddon(tweet, T) {
  * @return {object} stream - constructed stream object.
  **/
 function constructStream(stream, user, T) {
+  console.log('Subscribing to stream:', stream.reqOpts.url.match(/([a-z]+\/?[a-z]+)\.json/i)[0]);
+
+  
   stream.on('connect', function(req) {
     events.connect(req, T)
   });
