@@ -25,6 +25,7 @@
   },
   {
     "stream": "mentions",
+    "order": 0,
     "pattern": {
       "string": "get(images?|imgs?)",
       "flag": "gi"
