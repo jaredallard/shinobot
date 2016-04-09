@@ -22,15 +22,6 @@
     },
     "function": "getVersion",
     "response": "v: {{version}} c: {{commit}}"
-  },
-  {
-    "stream": "mentions",
-    "order": 0,
-    "pattern": {
-      "string": "get(images?|imgs?)",
-      "flag": "gi"
-    },
-    "function": "getImage"
   }],
   "streams": [
     "home",

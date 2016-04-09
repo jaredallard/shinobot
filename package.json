@@ -1,7 +1,7 @@
 {
   "name": "shinobot",
-  "version": "1.0.0",
-  "description": "0.0.1",
+  "version": "1.0.1",
+  "description": "Example usage of shinojs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/jaredallard/shinobot#readme",
   "dependencies": {
-    "google-images": "^0.1.0",
+    "google-images": "^1.0.0",
     "handlebars": "^3.0.3",
     "node-base64-image": "0.0.1",
     "prompt": "^0.2.14",
