@@ -4,6 +4,13 @@
 
 A bot that posts images of Asada Shino!
 
+## Setup
+
+Google CSE https://www.npmjs.com/package/google-images#set-up-google-custom-search-engine
+Twitter Apps: https://apps.twitter.com
+
+`config.example.json` **MODIFY IT** -> `config.json`
+
 ## Installation
 
 ```bash
