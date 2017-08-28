@@ -16,8 +16,8 @@ Twitter Apps: https://apps.twitter.com
 ```bash
 git clone https://github.com/jaredallard/shinobot
 cd shinobot
-npm install
-[node/io].js index.js
+[yarn/npm] install
+node index.js
 ```
 
 ## Engine
