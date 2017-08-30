@@ -22,6 +22,22 @@
     },
     "function": "getVersion",
     "response": "v: {{version}} c: {{commit}}"
+  },
+  {
+    "stream": "mentions",
+    "pattern": {
+      "string": "((send|get|another)( me)?( [an]+)?) (image|picture|pic|img)",
+      "flag": "gi"
+    },
+    "function": "denyImage"
+  },
+  {
+    "stream": "mentions",
+    "pattern": {
+      "string": "i love you",
+      "flag": "gi"
+    },
+    "function": "love"
   }],
   "streams": [
     "home",
