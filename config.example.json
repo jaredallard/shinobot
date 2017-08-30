@@ -3,9 +3,18 @@
   "consumer_key":        "",
   "access_token":        "",
   "access_token_secret": "",
-  "google": {
-    "cseid": "",
-    "apikey": "",
-    "search": "Asada Shino"
+  "pixiv": {
+    "login": {
+      "username": "",
+      "password": ""
+    },
+    "search": {
+      "q": "Asada Shino AND sinon -R-18",
+      "mode": "tag",
+      "period": "all",
+      "per_page": 50,
+      "type": "all"
+    },
+    "max_pages": 20
   }
 }
