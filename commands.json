@@ -1,12 +1,7 @@
 {
   "events": [{
-    "interval": 900000,
+    "interval": 1800000,
     "type": "timer",
-    "function": "postImage"
-  },
-  {
-    "type": "one-shot",
-    "target": "init",
     "function": "postImage"
   },
   {
