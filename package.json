@@ -4,7 +4,8 @@
   "description": "Example usage of shinojs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec shinojs"
   },
   "repository": {
     "type": "git",
@@ -22,8 +23,6 @@
     "node-pixiv": "^0.1.1",
     "prompt": "^1.0.0",
     "random-number-csprng": "^1.0.2",
-    "request": "^2.81.0",
-    "request-promise-native": "^1.0.4",
     "simple-spinner": "0.0.5",
     "twit": "^2.1.0"
   }

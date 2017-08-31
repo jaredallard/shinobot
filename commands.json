@@ -7,6 +7,11 @@
   {
     "type": "one-shot",
     "target": "init",
+    "function": "postImage"
+  },
+  {
+    "type": "one-shot",
+    "target": "init",
     "function": "updateLocation"
   }],
   "commands": [{

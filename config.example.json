@@ -9,7 +9,7 @@
       "password": ""
     },
     "search": {
-      "q": "sinon",
+      "q": "sinon -R-18",
       "mode": "tag",
       "period": "all",
       "per_page": 50,
