@@ -16,7 +16,7 @@
 
 Pixiv: https://pixiv.net (create an account)
 
-Twitter Apps: https://apps.twitter.com (create an application)
+Twitter Apps: https://apps.twitter.com (create an application, enable DM access!)
 
 `config.example.json` **MODIFY IT** -> `config.json`
 

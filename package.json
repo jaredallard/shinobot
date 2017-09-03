@@ -1,11 +1,11 @@
 {
   "name": "shinobot",
-  "version": "1.0.1",
-  "description": "Example usage of shinojs",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "Inteligent Node.js Chatbot",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec shinojs"
+    "start": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,13 @@
   },
   "homepage": "https://github.com/jaredallard/shinobot#readme",
   "dependencies": {
+    "async": "^2.5.0",
     "debug": "^3.0.1",
     "handlebars": "^4.0.10",
     "node-pixiv": "^0.1.1",
     "prompt": "^1.0.0",
     "random-number-csprng": "^1.0.2",
+    "shinojs": "^2.0.0",
     "simple-spinner": "0.0.5",
     "twit": "^2.1.0"
   }
