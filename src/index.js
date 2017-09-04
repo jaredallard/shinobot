@@ -1,5 +1,5 @@
 /**
- * shinobot - regex powered node.js chat bot
+ * shinobot - intelligent chat bot
  *
  * @author Jared Allard <jaredallard@outlook.com>
  * @license MIT
@@ -17,25 +17,38 @@ const init = async () => {
   debug('init', 'init shino')
   await app.init()
 
-  // on all dms
-  app.on('dm', (dm, next) => {
-    debug('test', 'got DM')
-
-    return next()
-  }, (dm, next) => {
-    debug('test', 'yay i can go too')
-    return next()
-  });
+  app.on('dm', {
+    version: 1,
+    label: 'hello',
+    classifiers: [
+      'hello',
+      'hi',
+      'hey',
+      'suh'
+    ]
+  }, async content => {
+    debug('hello', content.analysis)
+    await content.reply('Hello!')
+  })
 
   app.on('dm', {
     version: 1,
+    label: 'goodbye',
     classifiers: [
-      'hello',
-      'hi'
+      'goodbye',
+      'seeya',
+      'bye'
     ]
-  }, content => {
-    debug('nlp:test', content.analysis)
+  }, async content => {
+    debug('goodbye', content.analysis)
+    await content.reply('Goodbye~')
   })
+
+  app.on('dm', async content => {
+    await content.reply('Sorry... I didn\'t understand you...')
+  })
+
+  app.done()
 }
 
 
