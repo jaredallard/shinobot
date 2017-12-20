@@ -31,7 +31,7 @@ const init = async () => {
   await app.init()
 
   app.register('hello', (T, dm) => {
-    dm.reply("Hello!")
+    dm.reply('Hello!')
   });
 
   app.register('debugEnabled', (T, dm) => {
@@ -48,7 +48,7 @@ const init = async () => {
   })
 
   app.register('dropContext', (T, dm, details) => {
-    details.setContext("")
+    details.setContext('')
     dm.reply('Context is dropped. Root level instructions only.')
   })
 
@@ -56,19 +56,19 @@ const init = async () => {
     version: 2,
     address: 'hello',
     classifiers: [
-      "hello",
-      "hey",
-      "hi"
+      'hello',
+      'hey',
+      'hi'
     ],
-    action: "hello",
-    default: "root",
+    action: 'hello',
+    default: 'root',
     children: [
       {
         version: 2,
         address: 'dropResponse',
         classifiers: [
-          "notqqq much",
-          "nothen"
+          'notqqq much',
+          'nothen'
         ],
         action: null
       }
@@ -85,33 +85,34 @@ const init = async () => {
     version: 2,
     address: 'debug',
     classifiers: [
-      "debug mode",
-      "set debug",
-      "enable debug mode",
-      "debug"
+      'debug mode',
+      'set debug',
+      'enable debug mode',
+      'debug'
     ],
-    action: "debugEnabled",
+    default: 'unknown',
+    action: 'debugEnabled',
     children: [
       {
         version: 2,
         classifiers: [
-          "context",
-          "get",
-          "retrieve",
-          "print",
-          "show"
+          'context',
+          'get',
+          'retrieve',
+          'print',
+          'show'
         ],
-        action: "getContext"
+        action: 'getContext'
       },
       {
         version: 2,
         classifiers: [
-          "context",
-          "drop",
-          "remove",
-          "destroy"
+          'context',
+          'drop',
+          'remove',
+          'destroy'
         ],
-        action: "dropContext"
+        action: 'dropContext'
       }
     ]
   })
