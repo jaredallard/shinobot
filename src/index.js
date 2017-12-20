@@ -8,7 +8,7 @@
 'use strict';
 
 const debug = require('debug')('shinobot')
-const Shino = require('../../shinojs/lib/shino.js')
+const Shino = require('shinojs')
 
 let app;
 
@@ -23,25 +23,6 @@ const wait  = (int = 1300) => {
   })
 }
 
-const users = {
-
-}
-
-const processRegistration = async dm => {
-  const userid = dm.sender.id_str
-
-  const response = app.classifier.classify(dm.text)
-
-  if(response === 'no') {
-    await dm.reply('Sorry... I need your permisson to continue. Message me again anytime to start again!')
-    return delete users[userid]
-  }
-
-  users[userid] = dm.sender
-
-  return await dm.reply('Great! You\'re all set!')
-}
-
 const init = async () => {
 
   app = new Shino(require('./config.json'))
@@ -49,103 +30,90 @@ const init = async () => {
   debug('init', 'init shino')
   await app.init()
 
-  // account registration
-  app.on('dm', async (dm, next) => {
-    const userid = dm.sender.id_str
+  app.register('hello', (T, dm) => {
+    dm.reply("Hello!")
+  });
 
-    // registration phase
-    if(users[userid] === 'registering') return await processRegistration(dm)
-    if(users[userid]) return next()
+  app.register('debugEnabled', (T, dm) => {
+    dm.reply('debug context set')
+  })
 
-    await dm.reply(`Hello, {{screen_name}}! I'm Asada Shino. It's nice to meet you!`)
-    await wait()
+  app.register('getContext', (T, dm, details) => {
+    const context = details.getContext()
+    dm.reply(`Current context is: ${context}`);
+  })
 
-    await dm.reply('My goal is to become a fully functioning AI one day!')
-    await wait()
+  app.register('unknown', (T, dm) => {
+    dm.reply('I\'m sorry, I don\'t understand that...')
+  })
 
-    await dm.reply(`But before we get into that, I'm going to need your permission to create you an account! Is that OK?`)
-
-    // set stage
-    users[userid] = 'registering'
+  app.register('dropContext', (T, dm, details) => {
+    details.setContext("")
+    dm.reply('Context is dropped. Root level instructions only.')
   })
 
   app.on('dm', {
-    version: 1,
-    label: 'hello',
+    version: 2,
+    address: 'hello',
     classifiers: [
-      'hello',
-      'hi',
-      'hey',
-      'suh'
+      "hello",
+      "hey",
+      "hi"
+    ],
+    action: "hello",
+    default: "root",
+    children: [
+      {
+        version: 2,
+        address: 'dropResponse',
+        classifiers: [
+          "notqqq much",
+          "nothen"
+        ],
+        action: null
+      }
     ]
-  }, async content => {
-    debug('hello', content.analysis)
-    await content.reply('Hello!')
+  })
+
+  // Unknown command handler
+  app.on('dm', {
+    version: 2,
+    address: 'unknown'
   })
 
   app.on('dm', {
-    version: 1,
-    label: 'goodbye',
+    version: 2,
+    address: 'debug',
     classifiers: [
-      'goodbye',
-      'seeya',
-      'bye'
+      "debug mode",
+      "set debug",
+      "enable debug mode",
+      "debug"
+    ],
+    action: "debugEnabled",
+    children: [
+      {
+        version: 2,
+        classifiers: [
+          "context",
+          "get",
+          "retrieve",
+          "print",
+          "show"
+        ],
+        action: "getContext"
+      },
+      {
+        version: 2,
+        classifiers: [
+          "context",
+          "drop",
+          "remove",
+          "destroy"
+        ],
+        action: "dropContext"
+      }
     ]
-  }, async content => {
-    debug('goodbye', content.analysis)
-    await content.reply('Goodbye~')
-  })
-
-  app.on('dm', {
-    version: 1,
-    label: 'stateInquiry',
-    classifiers: [
-      'how are you',
-      'how are you feeling'
-    ]
-  }, async content => {
-    await content.reply('I\'m doing good! How are you?')
-  })
-
-  app.on('dm', {
-    version: 1,
-    label: 'stateResponse',
-    classifiers: [
-      'im qqqq',
-      'not qqqq',
-      'ok',
-      'fine'
-    ]
-  })
-
-  app.on('dm', async content => {
-    await content.reply('Sorry... I didn\'t understand you...')
-  })
-
-  // custom responses
-  const yes = [
-    'yes',
-    'ye',
-    'yeah',
-    'yea',
-    'sure',
-    'thats cool',
-    'yep'
-  ]
-  const no = [
-    'no',
-    'nah',
-    'nope',
-    'no thanks',
-    'never'
-  ]
-
-  yes.forEach(trainee => {
-    app.classifier.addDocument(trainee, 'yes')
-  })
-
-  no.forEach(trainee => {
-    app.classifier.addDocument(trainee, 'no')
   })
 
   app.done()

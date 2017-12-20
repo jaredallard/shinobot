@@ -27,5 +27,8 @@
     "shinojs": "^2.0.0",
     "simple-spinner": "0.0.5",
     "twit": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.3"
   }
 }
