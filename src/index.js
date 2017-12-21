@@ -25,7 +25,7 @@ const wait  = (int = 1300) => {
 
 const init = async () => {
 
-  app = new Shino(require('./config.json'), 'telegram')
+  app = new Shino(require('./config.json'), ['telegram', 'twitter'])
 
   debug('init', 'init shino')
   await app.init()
@@ -52,6 +52,12 @@ const init = async () => {
     dm.reply('Context is dropped. Root level instructions only.')
   })
 
+  app.register('help', (adapater, msg) => {
+    msg.reply(`
+      I'm sorry... but I can't really do much right now. For now just try your best to find out my secrets~!
+    `)
+  })
+
   app.on('dm', {
     version: 2,
     address: 'hello',
@@ -60,25 +66,25 @@ const init = async () => {
       'hey',
       'hi'
     ],
-    action: 'hello',
-    default: 'root',
-    children: [
-      {
-        version: 2,
-        address: 'dropResponse',
-        classifiers: [
-          'notqqq much',
-          'nothen'
-        ],
-        action: null
-      }
-    ]
+    action: 'hello'
   })
 
   // Unknown command handler
   app.on('dm', {
     version: 2,
     address: 'unknown'
+  })
+
+  app.on('dm', {
+    version: 2,
+    address: 'start',
+    classifiers: [
+      'help',
+      'how do i',
+      'what can',
+      'i need'
+    ],
+    action: 'help'
   })
 
   app.on('dm', {
