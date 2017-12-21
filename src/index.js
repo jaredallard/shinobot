@@ -25,7 +25,7 @@ const wait  = (int = 1300) => {
 
 const init = async () => {
 
-  app = new Shino(require('./config.json'))
+  app = new Shino(require('./config.json'), 'telegram')
 
   debug('init', 'init shino')
   await app.init()
